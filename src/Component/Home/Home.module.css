@@ -1,0 +1,64 @@
+.header_container {
+    display: flex;
+    justify-content: space-between; /* 좌우 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    padding: 10px 20px; /* 여백 설정 */
+    height: 60px; /* 헤더 높이 */
+  }
+  
+  .header_container img {
+    height: 40px; /* 이미지 크기 조정 */
+  }
+  
+  .gps_container {
+    display: inline-block; /* 내용 길이에 따라 크기 조정 */
+    text-align: left; /* 텍스트 좌측 정렬 */
+    padding: 0px 10px; /* 적절한 여백 설정 */
+    border: 1px solid black;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-size: 12px; /* 폰트 크기 줄이기 */
+    line-height: 1.2; /* 줄 간격 조정 */
+    max-width: 100%; /* 너무 길어지지 않도록 설정 */
+    margin: 10px 0 0 20px;
+}
+
+.slider_container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 개별 슬라이드 항목 스타일 */
+.slider_item {
+    padding: 10px; /* 내부 여백 조정 */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    margin-right: 15px; /* 각 항목 사이 간격 추가 */
+    font-size: 14px; /* 폰트 크기 줄이기 */
+    width: 180px; /* 가로 크기 증가 */
+    height: 100px; /* 세로 크기 줄이기 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.view_all_button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px; /* 버튼 폰트 크기 줄이기 */
+    width: 100%;
+}
+
+
+
+

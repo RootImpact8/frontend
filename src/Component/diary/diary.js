@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class main extends Component {
+class diary extends Component {
     render() {
         return (
             <div>
-                <h1>테스트용 페이지 1</h1>
+                다이어리 부분이 될 예정
             </div>
         );
     }
 }
 
-export default main;
+export default diary;
