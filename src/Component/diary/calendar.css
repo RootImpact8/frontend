@@ -1,0 +1,46 @@
+/* calendar.css */
+
+/*오른쪽 버튼 css*/
+.fc .fc-button-primary:disabled {
+    background-color: transparent !important;
+    color: #000000;
+    border: none;
+}
+.fc .fc-button-primary {
+    background-color: transparent !important;
+    color: #000000;
+    border: none;
+}
+.fc .fc-button-primary:hover {
+    color: #000000;
+}
+
+/*달력 css*/
+.fc-theme-standard td, .fc-theme-standard th {
+    border: none;
+}
+.fc-theme-standard .fc-scrollgrid {
+    border: none;
+}
+.fc .fc-daygrid-day-top {
+    justify-content: center;
+}
+.fc-day-sun a { /* 일요일 컬러 */
+    color: #cf0000;
+}
+.fc .fc-col-header-cell-cushion { /*요일 컬러*/
+    color: #000000;
+}
+/*년월 text*/
+.fc .fc-toolbar-title {
+    font-size: 1.5em;
+    margin: 0 0 0 13px;
+}
+
+/*.fc  {*/
+/*    !*달력 높이*!*/
+/*    height: 405px !important;*/
+/*}*/
+
+
+
