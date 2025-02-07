@@ -103,7 +103,7 @@ class Main extends Component {
                         <p><img src={gps} alt='GPS이미지'/> {this.state.error ? this.state.error : this.state.location}</p>
                     </div>
 
-                    <h2>{this.state.currentDate}의 농사 TIP</h2> 
+                    <h2 className={style.Today_LongContainer}><div className={style.Today_container}>{this.state.currentDate}</div>의 농사 TIP</h2> 
 
                     {/* ✅ 위치 데이터가 있을 때만 WeatherInfo 렌더링 */}
                     {this.state.latitude && this.state.longitude && (

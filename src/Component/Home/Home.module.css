@@ -9,6 +9,15 @@
   .header_container img {
     height: 40px; 
   }
+
+  .Today_LongContainer {
+    display: flex;
+    margin-left: 20px;
+  }
+
+  .Today_container {
+    color: #1BA639;
+  }
   
   .gps_container {
     display: inline-block; 
