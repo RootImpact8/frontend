@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import WeatherInfo from './WeatherInfo'; 
 import Footer from './footer';
-import Slider from 'react-slick'; // ✅ 슬라이더 추가
+import Slider from 'react-slick'; 
 import { useNavigate } from 'react-router-dom';
 
 import "slick-carousel/slick/slick.css"; 
@@ -18,7 +18,9 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: "위치 불러오는 중...",
+            location: null,
+            latitude: null,
+            longitude: null,
             error: null,
             currentDate: this.getCurrentDate(),
             activities: [
@@ -33,7 +35,9 @@ class Main extends Component {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
-                    this.getLocationName(latitude, longitude);
+                    this.setState({ latitude, longitude }, () => {
+                        this.getLocationName(latitude, longitude);
+                    });
                 },
                 (error) => {
                     this.setState({ error: "위치 특정 불가" });
@@ -101,8 +105,10 @@ class Main extends Component {
 
                     <h2>{this.state.currentDate}의 농사 TIP</h2> 
 
-                    {/* 날씨 정보 컴포넌트 추가 */}
-                    <WeatherInfo />
+                    {/* ✅ 위치 데이터가 있을 때만 WeatherInfo 렌더링 */}
+                    {this.state.latitude && this.state.longitude && (
+                        <WeatherInfo lat={this.state.latitude} lon={this.state.longitude} />
+                    )}
 
                     <div className={style.slider_container}>
                         <h3>싹 AI의 추천 활동</h3>
@@ -113,7 +119,6 @@ class Main extends Component {
                                     <p>{activity.description}</p>
                                 </div>
                             ))}
-                            {/* 전체보기 버튼을 슬라이드 끝에 배치 */}
                             <div className={style.view_all_container}>
                                 <button className={style.view_all_button} onClick={() => this.props.navigate('/activities')}>
                                     전체보기 →
