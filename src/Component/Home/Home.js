@@ -11,7 +11,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Logo from "../Images/Logo.png";
 import profill2 from "../Images/Profill2.png";
 import gps from "../Images/GPS.png";
-import warningIcon from "../Images/warning.png";
 import cropImage from "../Images/crop.png";
 import RedGPS from "../Images/redGPS.png";
 
