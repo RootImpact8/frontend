@@ -23,7 +23,8 @@ class SliderHeader extends Component {
       <div className={style.slider_container}>
         <div className={style.slider_header}>
           <h3>{title}</h3>
-          <span className={style.view_all}>모든 작물 확인하기</span>
+          <span className={style.view_all}
+          onClick={() => this.props.navigate("/#")}>모든 작물 확인하기</span>
         </div>
 
         <Slider

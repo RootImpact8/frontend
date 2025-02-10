@@ -43,7 +43,7 @@ class SliderMain extends Component {
               <div
                 key={activity.id}
                 className={style.view_all_button}
-                onClick={this.handleViewAll}
+                onClick={() => this.props.navigate("/#")}
               >
                 {activity.title}
               </div>

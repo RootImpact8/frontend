@@ -22,6 +22,7 @@ import SliderHeader from "./SliderHeader";
 import SliderMain from "./SliderMain";
 
 class Main extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -38,15 +39,15 @@ class Main extends Component {
           id: 1,
           title: "새로운 비료 활용법",
           description: "더 나은 수확을 위한 친환경 비료 사용법",
-          type: "수확", // ✅ 비료 → 노란색 표시
-          image: require("../Images/star1.png"), // ✅ 과일 이미지 추가
+          type: "수확",
+          image: require("../Images/star1.png"),
         },
         {
           id: 2,
           title: "봄철 병해충 방제",
           description: "작물을 안전하게 보호하는 효과적인 방법",
-          type: "비료", // ✅ 수확 → 빨간색 표시
-          image: require("../Images/star2.png"), // ✅ 과일 이미지 추가
+          type: "비료",
+          image: require("../Images/star2.png"),
         },
         {
           id: 3,
@@ -83,6 +84,7 @@ class Main extends Component {
       this.setState({ error: "위치 특정 불가" });
     }
   }
+  
 
   getCurrentDate() {
     const today = new Date();
@@ -203,6 +205,7 @@ class Main extends Component {
             src={profill2}
             alt="프로필 이미지 2"
             className={style.profillImg}
+            onClick={() => this.props.navigate("/login")}
           />
         </header>
 
