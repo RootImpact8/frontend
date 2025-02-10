@@ -1,41 +1,59 @@
-import React, { useState,useRef } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import './calendar.css';
+import React, { useState, useRef } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import "./calendar.css";
 
 const CalendarComponent = () => {
     const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedEvents, setSelectedEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState(null);
     const eventDetailsRef = useRef(null);
 
-    // 예제 데이터
-    const events = [
-        { title: 'Event 1', date: '2025-02-01' },
-        { title: 'Event 2', date: '2025-02-07' }
-    ];
+    const diaryData = [
+        {
+            date: "2025-02-19",
+            title: "휴식",
+            icon: "🏡",
+            time: "AM 08:00",
+            crop: "딸기",
+            details: "온풍기 20 정도 유지...",
+            temperature: "12℃ / 4℃",
+            weather: "☀️",
+        },
+        {
+            date: "2025-02-20",
+            title: "수확",
+            icon: "🌱",
+            time: "PM 14:00",
+            crop: "상추",
+            details: "수분 조절 필요",
+            temperature: "15℃ / 5℃",
+            weather: "🌤️",
+        },
 
-    // 이벤트 상세 날짜를 '날짜.요일' 형식으로 변환
+];
+
+    // 날짜 형식 변경 (ex: 19.수)
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
-        const day = date.getDate().toString().padStart(2, '0'); // 두 자리 숫자로 변환
-        const weekday = new Intl.DateTimeFormat('ko-KR', { weekday: 'short' }).format(date);
+        const day = date.getDate().toString().padStart(2, "0");
+        const weekday = new Intl.DateTimeFormat("ko-KR", { weekday: "short" }).format(date);
         return `${day}.${weekday}`;
     };
 
-    // ko 설정으로 인한 일,월 텍스트 제거
+    // ko 설정으로 인한 '일' 제거
     const handleDayCellContent = (arg) => {
-        const dayNumber = arg.dayNumberText.replace("일", "");
-        return dayNumber;
+        return arg.dayNumberText.replace("일", "");
     };
 
-    // 날짜 클릭시 해당 날짜 이벤트 상세 출력 및 스크롤 이동
+    // 날짜 클릭 이벤트 처리
     const handleDateClick = (arg) => {
-        setSelectedDate(formatDate(arg.dateStr));
-        const filteredEvents = events.filter(event =>
-            new Date(event.date).toISOString().split('T')[0] === arg.dateStr
-        );
-        setSelectedEvents(filteredEvents);
+        const formattedDate = formatDate(arg.dateStr);
+        setSelectedDate(formattedDate);
+
+        // 선택한 날짜에 해당하는 이벤트 검색
+        const event = diaryData.find((e) => e.date === arg.dateStr);
+        setSelectedEvent(event || null);
 
         setTimeout(() => {
             if (eventDetailsRef.current) {
@@ -46,35 +64,54 @@ const CalendarComponent = () => {
 
     return (
         <div>
-        <FullCalendar
-            plugins={[ dayGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            locale="ko"
-            fixedWeekCount={false}      //5주만 보이게 해줌
+            <FullCalendar
+                plugins={[dayGridPlugin, interactionPlugin]}
+                initialView="dayGridMonth"
+                locale="ko"
+                fixedWeekCount={false}
+                titleFormat={{ year: "numeric", month: "numeric" }}
+                events={diaryData.map((event) => ({ title: event.title, date: event.date }))}
+                dateClick={handleDateClick}
+                dayCellContent={handleDayCellContent}
+                height="auto"
+                dayMaxEventRows={true}
+            />
 
-            titleFormat= {{ year: 'numeric', month: 'numeric' }}
-            events={events}
-            dateClick={handleDateClick}
-            dayCellContent={handleDayCellContent}
-            height="auto"
-            dayMaxEventRows={true}  // 모든 날짜를 다 보이게 설정
-        />
             {selectedDate && (
                 <div ref={eventDetailsRef} className="event-details">
-                    <h3>{selectedDate}</h3>
-                    {selectedEvents.length > 0 ? (
-                        <ul>
-                            {selectedEvents.map((event, index) => (
-                                <li key={index}>{event.title}</li>
-                            ))}
-                        </ul>
+                    {/* 날짜 및 날씨 정보 */}
+                    <div className="event-header">
+                        <div className="event-header-detail">
+                            <h3>{selectedDate}</h3>
+                            <p className="recent-label">1일 전, 가장 최근</p>
+                        </div>
+
+                        <p className="weather-info">
+                        {selectedEvent?.temperature} {selectedEvent?.weather}
+                        </p>
+                    </div>
+
+                    {/* 이벤트 상세 내용 */}
+                    {selectedEvent ? (
+                        <div className="event-card">
+                            <p className="event-time">{selectedEvent.time}</p>
+                            <div className="event-content">
+                                <div className="event-description">
+                                    <span className="event-icon">{selectedEvent.icon}</span>
+                                    <p className="event-title">{selectedEvent.title}</p>
+                                </div>
+
+                                {/*<p className="event-crop">작물: {selectedEvent.crop}</p>*/}
+                                <p className="event-details">{selectedEvent.details}</p>
+                            </div>
+                        </div>
                     ) : (
-                        <p>이 날짜에는 이벤트가 없습니다.</p>
+                        <p className="no-event">이 날짜에는 이벤트가 없습니다.</p>
                     )}
                 </div>
             )}
         </div>
     );
-}
+};
 
 export default CalendarComponent;
