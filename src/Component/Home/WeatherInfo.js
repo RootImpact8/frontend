@@ -162,7 +162,7 @@ class WeatherInfo extends Component {
         {/* 날씨 관련 TIP */}
         <hr />
         <p className={style.weather_tip}>
-          TIP: 오늘 날씨는 농작물 심기에{" "}
+          TIP: 농작물 심기에{" "}
           {weatherData.current.temp_c > 15 ? "적합합니다." : "다소 쌀쌀합니다."}
         </p>
       </div>

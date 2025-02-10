@@ -9,7 +9,7 @@
 }
 
 .date_info {
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
     opacity: 0.8;
     margin-top: 0px;
@@ -41,7 +41,7 @@
 
 
 .weather_tip {
-    font-size: 12px;
+    font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
     opacity: 1.0;
@@ -55,13 +55,13 @@
 
 
 .weather_details h1 {
-    font-size: 50px;
+    font-size: 44px;
     margin: 0;
 }
 
 
 .weather_status {
-    font-size: 24px; 
+    font-size: 22px; 
     font-weight: bold;
     opacity: 0.9;
 }
@@ -75,7 +75,7 @@
 
 
 .weather_sub {
-    font-size: 10px; 
+    font-size: 16px; 
     opacity: 0.8;
     white-space: nowrap; 
 }

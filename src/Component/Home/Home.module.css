@@ -6,13 +6,23 @@
   height: 60px; 
 }
 
-.header_container img {
-  height: 40px; 
+.LogoImg {
+  height: 34px;
+  width: 38px; 
+}
+
+.profillImg {
+  height: 34px;
+  width: 34px; 
+  background-color: white;
+  border-radius: 18px;
 }
 
 .Today_LongContainer {
   display: flex;
   margin-left: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .Today_container {
@@ -20,59 +30,101 @@
 }
 
 .gps_container {
-  display: inline-block; 
-  text-align: left; 
-  padding: 0px 10px; 
-  border: 1px solid black;
-  background-color: #f8f9fa;
+  display: inline-block;
+  text-align: left;
+  padding: 0px 10px;
+  border: 1px none black;
+  background-color: #FFFFFF;
   border-radius: 8px;
-  font-size: 12px; 
-  line-height: 1.2; 
-  max-width: 100%; 
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2;
+  max-width: 100%;
   margin: 10px 0 0 20px;
 }
 
-.slider_container {
-  margin: 20px 0;
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  overflow: hidden;
+.star_item {
+  padding: 10px;
+  margin-right: 10px; /* ✅ 슬라이드 간격 조정 */
 }
 
-.slider_item {
-  padding: 10px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: center;
-  margin-right: 15px; 
-  font-size: 14px; 
-  width: 180px;
-  height: 100px;
+.Star_title_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.view_all_button {
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  font-size: 14px; 
-  width: 100%;
+.Star_sub_title {
+  font-size: 18px;
+  font-weight: bold;
+  width: 30vw;
+  margin-left: 20px;
 }
+
+.Star_find {
+  text-decoration: underline;
+  width: 35vw;
+  margin-left: 20px;
+}
+
+
+
+
+.slider_container h3 {
+  font-size: 18px;
+  margin-bottom: 15px; /* 🔹 제목과 슬라이더 간격 추가 */
+}
+
+.slider_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider_item {
+  padding: 15px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 160px; /* 🔹 가로 길이 줄이기 */
+  height: 90px; /* 🔹 높이 줄이기 */
+  margin-right: 10px; /* 🔹 슬라이드 간격 조정 */
+}
+
+
+/* 좌우 이동 버튼 추가 스타일 */
+.arrow_container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.arrow {
+  cursor: pointer;
+  font-size: 20px;
+  color: #666;
+  transition: color 0.2s ease-in-out;
+}
+
+.arrow:hover {
+  color: #333;
+}
+
+
 
 .main_container {
 height: auto;
 overflow-y: auto; 
 scrollbar-width: none; 
 -ms-overflow-style: none; 
-min-height: 100vh; /* 최소 높이 설정 */
+min-height: 150vh; /* 최소 높이 설정 */
 height: auto; /* 컨텐츠 양에 따라 자동 조절 */
 overflow-y: auto; /* 내용이 많아지면 스크롤 가능 */
 scrollbar-width: thin; 
