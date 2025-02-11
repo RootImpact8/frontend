@@ -57,21 +57,65 @@
   .date1 {
     display: flex;
     flex-direction: column;
+    gap: 10px;
   }
   .date2 {
     display: flex;
     flex-direction: column;
     opacity: 0.6;
+    gap: 10px;
   }
 
   .iconsContainer {
     display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
+    flex-direction: column;
   }
 
   .houseIcon {
-    font-size: 24px;
+    font-size: 16px;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+  }
+  
+  .houseIcon_main_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -20px;
+  }
+
+  .houseIcon_main {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .houseIcon_main p {
+    color: green;
+    margin-left: 5px;
+  }
+
+  .houseIcon_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .houseIcon_footer div {
+    font-size: 22px;
+  }
+
+  .houseIcon_footer span {
+    font-size: 20px;
+    opacity: 0.8;
   }
 
 .diaryButton {
@@ -82,7 +126,6 @@
     background-color: #E0EEE5;
     border-radius: 10px;
     height: 80px;
-    margin-top: 40px;
     width: 95%;
     margin-left: 2.5%;
     font-size: 20px;
@@ -95,5 +138,16 @@
   }
 
   .selectCrop {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: rgb(27, 166, 57);
+    width: 90%;
+    height: 56px;
+    border-radius: 15px;
+    font-size: 18px;
+    color: white;
+    margin-left: 5%;
+    margin-top: 10%;
   }
