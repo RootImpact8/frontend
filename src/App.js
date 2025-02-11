@@ -8,6 +8,7 @@ import Details from './Component/diary/Details';
 import Footer from './Component/Home/footer'; 
 
 import Login from './Component/Login/login';
+import SignUp from './Component/Login/SignUp';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/details/:date" element={<Details />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer />
       </div>

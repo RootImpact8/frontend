@@ -140,104 +140,92 @@ width: 6px;
 }
 
 .main_container::-webkit-scrollbar-thumb {
-background-color: #ccc;
-border-radius: 4px;
+  background-color: #ccc;
+  border-radius: 4px;
+}
+.warning_container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 20px;
+  margin-bottom: 15px;
 }
 
-/* 이상기후 모달 */
+.warning_red {
+  color: red;
+  font-weight: bold;
+}
+
 .abnormal_weather_modal {
-background: #fff3f3;
-color: rgb(0, 0, 0);
-padding: 10px;
-border-radius: 12px;
-margin: 10px 5%;
-text-align: left;
-width: 84%;
-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-flex-shrink: 0; /* 모달이 줄어들지 않도록 설정 */
+  margin-left: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
 }
 
-/* 이상기후 발생 경보 (좌측 정렬) */
-.abnormal_warning_container {
-display: flex;
-align-items: center;
-font-size: 14px;
-font-weight: bold;
-margin: 15px 0 10px 20px;
-gap: 5px;
-}
-
-/* 경고 아이콘 */
-.warning_icon {
-width: 25px;
-height: 25px;
-}
-
-/* 헤더 (위치 / 경보 유형) */
 .abnormal_weather_header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-size: 14px;
-font-weight: bold;
-margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-/* RedGPS 아이콘과 위치 정렬 */
-.abnormal_location {
-display: flex;
-align-items: center;
-gap: 5px;
-}
-
-/* 폭설경보 발생 (굵게) */
-.abnormal_type {
-font-size: 14px;
-font-weight: bold;
-}
-
-/* 본문 (대응 텍스트 / 이미지) */
 .abnormal_weather_content {
-display: flex;
-justify-content: space-between;
-align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
 }
 
-/* 야간 온풍기 대기 온도 (크게 & Bold) */
-.crop_warning {
-font-size: 16px;
-font-weight: bold;
-margin-bottom: 4px;
-}
-
-/* +1° 빨간색 강조 */
-.temp_highlight {
-color: red;
-}
-
-/* 최소 6도 유지 (gap 줄이기) */
-.crop_info {
-font-size: 14px;
-opacity: 0.8;
-margin-top: -2px;
-}
-
-/* 작물 보호 이미지 (크기 증가) */
 .crop_image {
-width: 100px;
-height: 100px;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-/* 상세보기 버튼 */
+.text_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.crop_warning {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.highlight {
+  color: red;
+  font-weight: bold;
+}
+
+.crop_info {
+  font-size: 14px;
+  color: #666;
+}
+
 .detail_button {
-background-color: #ff4d4d;
-color: white;
-padding: 10px;
-width: 100%;
-border: none;
-border-radius: 8px;
-cursor: pointer;
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #ff6b6b;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-
+.detail_button:hover {
+  background-color: #ff4f4f;
+}
 
