@@ -1,26 +1,29 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ useNavigate 사용
+import { useNavigate, useLocation } from 'react-router-dom';
 import book from '../Images/Book.png';
-import home from '../Images/Home.png';
+import book_true from '../Images/Book_true.png'; // Assuming you have an active icon for the diary
+import home from '../Images/home_false.png';
+import home_true from '../Images/Home.png'; // Assuming you have an active icon for home
 import profill from '../Images/Profill.png';
 
 import style from './footer.module.css';
 
 const Footer = () => {
-    const navigate = useNavigate(); // ✅ 페이지 이동을 위한 네비게이터
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     return (
         <footer className={style.footer_container}>
-            <div onClick={() => navigate('/diary')}> {/* ✅ 네비게이션 사용 */}
-                <img src={book} alt='북이미지' />
+            <div onClick={() => navigate('/diary')}> 
+                <img src={pathname === '/diary' ? book_true : book} alt='Book Icon' />
                 <span>영농일지</span>
             </div>
-            <div onClick={() => navigate('/')}> {/* ✅ 홈 이동 */}
-                <img src={home} alt='홈화면' />
+            <div onClick={() => navigate('/')}> 
+                <img src={pathname === '/' ? home_true : home} alt='Home Icon' />
                 <span>홈</span>
             </div>
-            <div onClick={() => navigate('/info')}> {/* ✅ 내 정보 이동 */}
-                <img src={profill} alt='사용자 프로필' />
+            <div onClick={() => navigate('/info')}> 
+                <img src={profill}/>
                 <span>내 정보</span>
             </div>
         </footer>

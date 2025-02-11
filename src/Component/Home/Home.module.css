@@ -1,12 +1,11 @@
-.header_container {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  padding: 10px 20px; 
+.home_header_container {
   height: 60px; 
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #F0F0F0;
 }
 
-.LogoImg {
+.home_LogoImg {
   height: 34px;
   width: 38px; 
 }
@@ -41,6 +40,7 @@
   line-height: 1.2;
   max-width: 100%;
   margin: 10px 0 0 20px;
+  width: 35%;
 }
 
 .star_item {
@@ -129,6 +129,7 @@ height: auto; /* 컨텐츠 양에 따라 자동 조절 */
 overflow-y: auto; /* 내용이 많아지면 스크롤 가능 */
 scrollbar-width: thin; 
 -ms-overflow-style: none; 
+background-color: #F8F8F8;
 }
 
 .main_container::-webkit-scrollbar {
@@ -143,6 +144,7 @@ width: 6px;
   background-color: #ccc;
   border-radius: 4px;
 }
+
 .warning_container {
   display: flex;
   align-items: center;
@@ -164,19 +166,20 @@ width: 6px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 85%;
+  height: 170px;
 }
 
 .abnormal_weather_header {
   font-size: 16px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: -10px;
 }
 
 .abnormal_weather_content {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 15px;
@@ -184,8 +187,8 @@ width: 6px;
 }
 
 .crop_image {
-  width: 60px;
-  height: 60px;
+  width: 93px;
+  height: 93px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -193,13 +196,13 @@ width: 6px;
 .text_container {
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .crop_warning {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   color: #333;
+  margin-bottom: -15px;
 }
 
 .highlight {
@@ -208,14 +211,13 @@ width: 6px;
 }
 
 .crop_info {
-  font-size: 14px;
+  font-size: 22px;
   color: #666;
 }
 
 .detail_button {
   width: 100%;
   padding: 12px;
-  margin-top: 15px;
   background-color: #ff6b6b;
   color: white;
   font-size: 14px;

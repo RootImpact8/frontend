@@ -10,7 +10,7 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1, // 1: 이메일/비밀번호 입력, 2: 이름 입력, 3: 회원가입 완료
+      step: 1, 
       email: "",
       password: "",
       name: "",

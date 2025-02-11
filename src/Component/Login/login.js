@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // ✅ axios 추가
+import axios from "axios"; 
 import style from "./login.module.css";
 import Logo from '../Images/Logo.png';
 
-const Backend_server_address = "http://43.201.122.113:8081"; // ✅ 백엔드 서버 주소
+const Backend_server_address = "http://43.201.122.113:8081"; 
 
 const Login = () => {
-  const navigate = useNavigate(); // ✅ 네비게이션 훅 사용
+  const navigate = useNavigate(); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // ✅ 에러 메시지 상태 추가
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   const handleLogin = async () => {
     try {
