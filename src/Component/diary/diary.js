@@ -46,7 +46,7 @@ const Diary = () => {
                       <span className={style.user}>{user.name} 님의 영농일지</span>
                       <div className={style.userCrop_info}>
                           <span className={style.cropList}>내 작물 정보</span>
-                          <div className={style.cropListPage} onClick={() => navigate('/info')}>
+                          <div className={style.cropListPage} onClick={() => navigate('/diary/crops')}>
                               <span>모든 작물 확인하기></span>
                           </div>
 

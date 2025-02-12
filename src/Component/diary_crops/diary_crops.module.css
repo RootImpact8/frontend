@@ -1,0 +1,125 @@
+.container {
+    padding: 20px;
+}
+.header_BackButton{
+    font-size: 25px;
+    font-weight: bold;
+}
+.header {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+}
+.header_Title {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.addButton {
+    background-color: #e0f7e9;
+    border: 1px solid #4caf50;
+    color: #000000;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 65px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+}
+.plusButton{
+    background-color: #1BA639;
+    border-radius: 100px;
+    width: 48px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 30%;
+    /* font-weight: bold; */
+    font-size: 25px;
+
+}
+.plusButton_Text{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.myCropsText{
+    font-weight: bold;
+    margin: 10px 0 15px 5px;
+}
+
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cropCard {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px;
+    height: 105px;
+    border-radius: 10px;
+    margin: 5px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.cropImage_style{
+    width: 115px;
+    height: 86px;
+    display: flex;
+    background-color: #F8F8FA;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center
+}
+.cropImage {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.cropInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.cropName {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.greenText{
+    color: #1BA639;
+
+}
+.cropData{
+
+}
+
+.cropDetail{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.sowingDate,
+.harvestDate {
+    font-size: 14px;
+    color: gray;
+    display: flex;
+    justify-content: space-between;
+}
+.sowingDate_detaile{
+    margin-left: 10px;
+}

@@ -75,6 +75,20 @@ const CalendarComponent = () => {
                 dayCellContent={handleDayCellContent}
                 height="auto"
                 dayMaxEventRows={true}
+
+                eventContent={(arg) => {
+                    let colorClass = "";
+                    if (arg.event.title === "수확") colorClass = "event-red";
+                    else if (arg.event.title === "휴식") colorClass = "event-green";
+                    else if (arg.event.title === "비료") colorClass = "event-yellow";
+
+                    return (
+                        <div className={`event-box ${colorClass}`}>
+                            {arg.event.title}
+                        </div>
+                    );
+                }}
+                //캘린더 타이틀에 따라 색지정
             />
 
             {selectedDate && (
@@ -94,6 +108,7 @@ const CalendarComponent = () => {
                     {/* 이벤트 상세 내용 */}
                     {selectedEvent ? (
                         <div className="event-card">
+                            <div className="crop_name">작물: {selectedEvent.crop}</div>
                             <p className="event-time">{selectedEvent.time}</p>
                             <div className="event-content">
                                 <div className="event-description">

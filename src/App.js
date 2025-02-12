@@ -6,8 +6,10 @@ import Diary from './Component/diary/diary';
 import Info from './Component/info/info'; 
 import Details from './Component/diary/Details'; 
 import Footer from './Component/Home/footer'; 
+import Diary_crops from "./Component/diary_crops/diary_crops";
 
 import Login from './Component/Login/login';
+
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/details/:date" element={<Details />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/diary/crops" element={<Diary_crops />} />
         </Routes>
         <Footer />
       </div>
