@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // 🔹 아이콘 추가
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 import Logo from "../Images/Logo.png";
 import profill2 from "../Images/Profill2.png";
@@ -57,10 +58,10 @@ class Main extends Component {
 
       /** ✅ 관심 작물 데이터 추가 */
       starCrops: [
-        { id: 1, image: require("../Images/star1.png") },
-        { id: 2, image: require("../Images/star2.png") },
-        { id: 3, image: require("../Images/star3.png") },
-        { id: 4, image: require("../Images/star4.png") },
+        { id: 1, name: "딸기", image: require("../Images/star1.png") },
+        { id: 2, name: "벼", image: require("../Images/star2.png") },
+        { id: 3, name: "배추", image: require("../Images/star3.png") },
+        { id: 4, name: "딸기", image: require("../Images/star4.png") },
         { id: 5, image: require("../Images/star5.png") },
       ],
     };
@@ -194,10 +195,42 @@ class Main extends Component {
     slidesToScroll: 1,
     arrows: false,
   };
+  componentDidMount() {
+    this.fetchPrice();
+  }
+  fetchPrice = async () => {
+    const token = localStorage.getItem('token');
+    const url = "http://43.201.122.113:8081/api/farm/price?cropName=딸기";
+
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      // Extract price data from the response
+      const prices = response.data.priceData.map(data => data.price);
+      const minPrice = Math.min(...prices);
+      const maxPrice = Math.max(...prices);
+
+      this.setState({
+        priceInfo: response.data.priceData,
+        minPrice,
+        maxPrice,
+        loading: false
+      });
+    } catch (error) {
+      this.setState({ error: error.toString(), loading: false });
+    }
+  }
 
   render() {
     const email = localStorage.getItem("email");
     const token = localStorage.getItem("token");
+    const { location, priceInfo, minPrice, maxPrice, loading, error } = this.state;
+    const url = "http://43.201.122.113:8081/api/farm/price?cropName=딸기";
+    const urlSplit = url.split("=");
+    const price = urlSplit[urlSplit.length - 1];
 
     console.log(email);
 
@@ -294,6 +327,27 @@ class Main extends Component {
             slidesToShow={3} // 한번에 3개씩 보이도록 설정
           />
           <div>현재 농작물 도매가</div>
+                  {loading ? <p>Loading data...</p> : error ? <p>Error: {error}</p> : 
+                    <div>
+                      <p>{price} 1Kg당</p>
+                      <ResponsiveContainer width='100%' height={300}>
+                        <AreaChart data={priceInfo}
+                          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                          <defs>
+                            <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                            </linearGradient>
+                          </defs>
+                          <XAxis dataKey="date" />
+                          <YAxis domain={[minPrice, maxPrice]} />
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <Tooltip />
+                          <Area type="monotone" dataKey="price" stroke="#8884d8" fillOpacity={1} fill="url(#colorPrice)" />
+                        </AreaChart>
+                      </ResponsiveContainer>
+                    </div>
+                  }
         </main>
         <Footer />
       </>
