@@ -224,7 +224,7 @@ class Main extends Component {
 
         <main className={style.main_container}>
           <div className={style.gps_container}>
-            <p>
+            <p onClick={() => this.props.navigate("/address")}>
               <img src={gps} alt="GPS이미지" />{" "}
               {this.state.error ? this.state.error : this.state.location}
             </p>

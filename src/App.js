@@ -14,6 +14,10 @@ import Login from './Component/Login/login';
 import SignUp from './Component/Login/SignUp';
 import Detail from './Component/Home/Detail';
 
+import Address from './Component/Home/address';
+
+import Test from './Component/Home/test';
+
 
 
 function App() {
@@ -30,7 +34,11 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/Detail" element={<Detail />} />
+          <Route path="/address" element={<Address />} />
           <Route path="/diary/crops" element={<Diary_crops />} />
+
+          <Route path="/Test" element={<Test />} />
+
         </Routes>
         <Footer />
       </div>

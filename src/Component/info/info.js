@@ -10,6 +10,7 @@ import bottom from '../Images/bottom_arrow.png';
 
 class info extends Component {
   render() {
+    
     return (
       <div>
         <header>

@@ -1,0 +1,78 @@
+.addressContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.address_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 36% 0 20px;
+    font-size: 20px;
+    margin-bottom: 15%;
+}
+
+.address_title1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.address_title2 {
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+.find_address {
+    width: 90%;
+    height: 56px;
+    font-size: 18px;
+    border: none;
+    background-color: #F8F8F8;
+    border-radius: 10px;
+    margin: 20px 0;
+    margin-left: 5%;
+}
+
+.my_address {
+    width: 90%;
+    height: 56px;
+    margin-left: 5%;
+    font-size: 18px;
+    border: 1px solid green;
+    background-color: rgba(27, 166, 57, 0.1) ;
+    border-radius: 10px;
+}
+
+.modal_find_address {
+    background-color: white;
+    border-radius: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.modal_text1 {
+    font-size: 12px;
+    position: relative;
+    left: -100px;
+}
+
+.modal_text2 {
+    margin-right: 55px;
+}
+
+.modalBackground {
+    position: fixed;
+    top: 70px;
+    z-index: 10;
+}
+
+.modalContainer {
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    z-index: 11;
+}
+
