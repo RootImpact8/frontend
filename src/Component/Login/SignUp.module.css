@@ -1,0 +1,111 @@
+.sign_main_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header_container {
+    display: flex;
+    align-items: center;
+}
+
+.sign_image {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    margin: 10px;
+}
+
+.sign_title {
+    font-size: 20px;
+    margin-left: 100px;
+}
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    margin: 30% 0 0 20px;
+}
+
+.main_top {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main_bottom {
+    font-size: 24px;
+}
+
+.footer_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.input_label {
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block; /* ✅ 레이블을 블록 요소로 변경해서 input 위에 배치 */
+  }
+
+.input_box {
+    margin-top: 10px;
+    width: 85%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input_box:focus {
+    border-color: #78777B;
+    box-shadow: 0px 0px 5px rgb(27, 166, 57);
+}
+
+.next_btn {
+    position: fixed; 
+    bottom: 180px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 87%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #E3E6ED;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: not-allowed;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ 버튼 활성화 스타일 */
+.next_btn.active {
+    background-color: #1BA639;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.next_btn.active:hover {
+    background-color: #178B33;
+}
+
+.main_sub {
+    font-size: 16px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+.check_icon {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 140.5px;
+    margin-top: 80px;
+}

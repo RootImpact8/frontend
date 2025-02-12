@@ -15,6 +15,7 @@ import profill2 from "../Images/Profill2.png";
 import gps from "../Images/GPS.png";
 import cropImage from "../Images/crop.png";
 import RedGPS from "../Images/redGPS.png";
+import warning from "../Images/warning.png";
 
 import style from "./Home.module.css";
 
@@ -22,7 +23,6 @@ import SliderHeader from "./SliderHeader";
 import SliderMain from "./SliderMain";
 
 class Main extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -51,10 +51,10 @@ class Main extends Component {
         },
         {
           id: 3,
-          title: "모든 추천 확인하기"
-        }
+          title: "모든 추천 확인하기",
+        },
       ],
-      
+
       /** ✅ 관심 작물 데이터 추가 */
       starCrops: [
         { id: 1, image: require("../Images/star1.png") },
@@ -84,7 +84,6 @@ class Main extends Component {
       this.setState({ error: "위치 특정 불가" });
     }
   }
-  
 
   getCurrentDate() {
     const today = new Date();
@@ -197,16 +196,30 @@ class Main extends Component {
   };
 
   render() {
+    const email = localStorage.getItem("email");
+    const token = localStorage.getItem("token");
+
+    console.log(email);
+
     return (
       <>
-        <header className={style.header_container}>
-          <img src={Logo} alt="로고이미지" className={style.LogoImg} />
-          <img
-            src={profill2}
-            alt="프로필 이미지 2"
-            className={style.profillImg}
-            onClick={() => this.props.navigate("/login")}
-          />
+        <header className={style.home_header_container}>
+          <img src={Logo} alt="로고이미지" className={style.home_LogoImg} />
+          {token ? (
+            <img
+              src={profill2}
+              alt="프로필 이미지"
+              className={style.profillImg}
+              onClick={() => this.props.navigate("/profile")}
+            />
+          ) : (
+            <span
+              className={style.login_text}
+              onClick={() => this.props.navigate("/login")}
+            >
+              로그인하기
+            </span>
+          )}
         </header>
 
         <main className={style.main_container}>
@@ -236,29 +249,43 @@ class Main extends Component {
           />
 
           {/* 이상기후 경보 모달 (이상기후 있을 때만 표시) */}
-          {this.state.abnormalWeather && (
-            <div className={style.abnormal_weather_modal}>
-              <div className={style.abnormal_weather_header}>
-                <span className={style.abnormal_location}>
-                  <img src={RedGPS} alt="GPS이미지" /> {this.state.location}
-                </span>
-                <span className={style.abnormal_type}>
-                  {this.state.abnormalWeather}
-                </span>
-              </div>
-              <div className={style.abnormal_weather_content}>
-                <div>
-                  <p className={style.crop_warning}>{this.state.cropWarning}</p>
-                  <p className={style.crop_info}>{this.state.cropInfo}</p>
+          {/* {this.state.abnormalWeather && ( */}
+          <div className={style.warning_container}>
+            <img src={warning} alt="경고 이미지" />
+            <span className={style.warning_red}>이상기후</span>
+            <span>발생 경보</span>
+          </div>
+
+          <div className={style.abnormal_weather_modal}>
+            {/* ✅ 폭설 경보 | 딸기 냉해 대비법 */}
+
+            {/* ✅ 메인 컨텐츠 */}
+            <div className={style.abnormal_weather_content}>
+              <img
+                src={cropImage}
+                alt="작물 보호 이미지"
+                className={style.crop_image}
+              />
+
+              <div className={style.text_container}>
+                <div className={style.abnormal_weather_header}>
+                  <span className={style.warning_red}>폭설 경보</span>{" "}
+                  <span> | 딸기 냉해 대비법</span>
                 </div>
-                <img
-                  src={cropImage}
-                  alt="작물 보호 이미지"
-                  className={style.crop_image}
-                />
+                <p className={style.crop_warning}>
+                  야간 온풍기 대기 온도
+                  <span className={style.highlight}> +1°</span>
+                </p>
+                <p className={style.crop_info}>최소 6도를 유지해요</p>
               </div>
             </div>
-          )}
+
+            {/* ✅ 버튼 추가 */}
+            <button className={style.detail_button} onClick={() => this.props.navigate("/Detail")}>
+              대처 방안 상세 보기 &gt;
+            </button>
+          </div>
+          {/*  )}  */}
 
           {/* 싹 AI 추천활동 & 도매가는 항상 표시 */}
           <SliderMain

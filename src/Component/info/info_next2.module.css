@@ -1,0 +1,153 @@
+  .header_detail {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 160px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .cropHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .cropImage {
+    width: 45px; /* Adjust as needed */
+    height: 45px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 15px;
+  }
+
+  .edit {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    cursor: pointer;
+    background-color: white;
+    padding: 7px;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+
+  .penIcon {
+    margin-left: 10px;
+  }
+
+.cropTitle {
+    margin-left: 20px;
+}
+
+  .dateInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    margin-right: 20px;
+  }
+
+  .date1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .date2 {
+    display: flex;
+    flex-direction: column;
+    opacity: 0.6;
+    gap: 10px;
+  }
+
+  .iconsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .houseIcon {
+    font-size: 16px;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+  }
+  
+  .houseIcon_main_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -20px;
+  }
+
+  .houseIcon_main {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .houseIcon_main p {
+    color: green;
+    margin-left: 5px;
+  }
+
+  .houseIcon_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .houseIcon_footer div {
+    font-size: 22px;
+  }
+
+  .houseIcon_footer span {
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+.diaryButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid green;
+    background-color: #E0EEE5;
+    border-radius: 10px;
+    height: 80px;
+    width: 95%;
+    margin-left: 2.5%;
+    font-size: 20px;
+}
+
+  .diaryButton img {
+    width: 48px;
+    margin-left: 10px;
+    margin-right: 120px;
+  }
+
+  .selectCrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: rgb(27, 166, 57);
+    width: 90%;
+    height: 56px;
+    border-radius: 15px;
+    font-size: 18px;
+    color: white;
+    margin-left: 5%;
+    margin-top: 10%;
+  }
