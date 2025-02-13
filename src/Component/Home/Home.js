@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // 🔹 아이콘 추가
+<<<<<<< HEAD
 import {
   AreaChart,
   Area,
@@ -18,6 +19,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+=======
+>>>>>>> 36fab81beaf12ba396cd3f7ab0e251eeed464684
 
 import Logo from "../Images/Logo.png";
 import profill2 from "../Images/Profill2.png";
@@ -70,10 +73,10 @@ class Main extends Component {
 
       /** ✅ 관심 작물 데이터 추가 */
       starCrops: [
-        { id: 1, name: "딸기", image: require("../Images/star1.png") },
-        { id: 2, name: "벼", image: require("../Images/star2.png") },
-        { id: 3, name: "배추", image: require("../Images/star3.png") },
-        { id: 4, name: "딸기", image: require("../Images/star4.png") },
+        { id: 1, image: require("../Images/star1.png") },
+        { id: 2, image: require("../Images/star2.png") },
+        { id: 3, image: require("../Images/star3.png") },
+        { id: 4, image: require("../Images/star4.png") },
         { id: 5, image: require("../Images/star5.png") },
       ],
     };
@@ -223,6 +226,7 @@ class Main extends Component {
     slidesToScroll: 1,
     arrows: false,
   };
+<<<<<<< HEAD
   componentDidMount() {
     this.fetchPrice();
     this.fetchLocationInfo();
@@ -274,16 +278,23 @@ class Main extends Component {
       this.setState({ error: error.toString(), loading: false });
     }
   };
+=======
+>>>>>>> 36fab81beaf12ba396cd3f7ab0e251eeed464684
 
   render() {
     const email = localStorage.getItem("email");
     const token = localStorage.getItem("token");
+<<<<<<< HEAD
     const { location, priceInfo, minPrice, maxPrice, loading, error } =
       this.state;
     const url = "http://43.201.122.113:8081/api/farm/price?cropName=딸기";
     const urlSplit = url.split("=");
     const price = urlSplit[urlSplit.length - 1];
     const { locationInfo } = this.state;
+=======
+
+    console.log(email);
+>>>>>>> 36fab81beaf12ba396cd3f7ab0e251eeed464684
 
     return (
       <>
@@ -307,11 +318,18 @@ class Main extends Component {
         </header>
 
         <main className={style.main_container}>
+<<<<<<< HEAD
           <div className={style.gps_container} onClick={() => this.props.navigate("/address")}>
             <p>
               <img src={gps} alt="GPS이미지" />
 
               {/* {this.state.error ? this.state.error : this.state.location} */}
+=======
+          <div className={style.gps_container}>
+            <p>
+              <img src={gps} alt="GPS이미지" />{" "}
+              {this.state.error ? this.state.error : this.state.location}
+>>>>>>> 36fab81beaf12ba396cd3f7ab0e251eeed464684
             </p>
             {locationInfo ? (
                 <p className={style.gps_user_address}>{`${locationInfo.city} ${locationInfo.state}`}</p>
@@ -391,6 +409,7 @@ class Main extends Component {
             slidesToShow={3} // 한번에 3개씩 보이도록 설정
           />
           <div>현재 농작물 도매가</div>
+<<<<<<< HEAD
           {loading ? (
             <p>Loading data...</p>
           ) : error ? (
@@ -424,6 +443,8 @@ class Main extends Component {
               </ResponsiveContainer>
             </div>
           )}
+=======
+>>>>>>> 36fab81beaf12ba396cd3f7ab0e251eeed464684
         </main>
         <Footer />
       </>
