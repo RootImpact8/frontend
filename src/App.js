@@ -18,6 +18,8 @@ import Address from './Component/Home/address';
 
 import Test from './Component/Home/test';
 
+import Loading from './Component/sub/loading';
+
 
 
 function App() {
@@ -38,6 +40,7 @@ function App() {
           <Route path="/diary/crops" element={<Diary_crops />} />
 
           <Route path="/Test" element={<Test />} />
+          <Route path="/Loading" element={<Loading />} />
 
         </Routes>
         <Footer />

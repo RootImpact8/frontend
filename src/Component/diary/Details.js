@@ -15,10 +15,8 @@ const Details = () => {
       const path = window.location.pathname;
       const parts = path.split("/");
       const cropName = parts[parts.length - 1]; // Get the last part of the URL
-      const decoded = decodeURIComponent(cropName); // Correctly decode it
-      console.log(decoded);
       
-        const url = `http://43.201.122.113:8081/api/farm/crop-news?cropName=${decodeURI("%EB%94%B8%EA%B8%B0")}`;
+        const url = `http://43.201.122.113:8081/api/farm/crop-news?cropId=${cropName}`;
 
         try {
         setLoading(true);

@@ -11,8 +11,8 @@ const SliderHeader = ({ title, items, slidesToShow }) => {
     setCurrentSlide(newIndex);
   };
 
-  const fruitHandler = (name) => {
-    navigate(`/Details/${name}`); // Navigate to the detail page
+  const fruitHandler = (Id) => {
+    navigate(`/Details/${Id}`); // Navigate to the detail page
   };
 
   const progress = ((currentSlide + 1) / Math.ceil(items.length / slidesToShow)) * 100; // Progress calculation
@@ -36,7 +36,7 @@ const SliderHeader = ({ title, items, slidesToShow }) => {
         beforeChange={handleBeforeChange}
       >
         {items.map((item) => (
-          <div key={item.id} className={style.slider_item} onClick={() => fruitHandler(item.name)}>
+          <div key={item.id} className={style.slider_item} onClick={() => fruitHandler(item.id)}>
             <img src={item.image} alt={item.name} className={style.slider_image} />
           </div>
         ))}

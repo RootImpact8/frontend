@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import Footer from "./footer";
@@ -9,7 +9,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // 🔹 아이콘 추가
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 import Logo from "../Images/Logo.png";
 import profill2 from "../Images/Profill2.png";
@@ -30,11 +38,15 @@ class Main extends Component {
       location: "",
       latitude: null,
       longitude: null,
+      locationInfo: null,
+      error: null,
       error: null,
       currentDate: this.getCurrentDate(),
       abnormalWeather: null,
       cropWarning: "",
       cropInfo: "",
+      city: "",
+      state: "",
       activities: [
         {
           id: 1,
@@ -68,21 +80,33 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    if ("geolocation" in navigator) {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
-          this.setState({ latitude, longitude }, () => {
-            this.getLocationName(latitude, longitude);
-            this.getWeatherData(latitude, longitude);
-          });
+          this.setState(
+            {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            },
+            () => {
+              this.getLocationName(
+                position.coords.latitude,
+                position.coords.longitude
+              );
+              this.getWeatherData(
+                position.coords.latitude,
+                position.coords.longitude
+              );
+            }
+          );
         },
         (error) => {
-          this.setState({ error: "위치 특정 불가" });
+          console.error(error);
+          this.setState({ error: "Unable to retrieve your location" });
         }
       );
     } else {
-      this.setState({ error: "위치 특정 불가" });
+      this.setState({ error: "Geolocation is not supported by this browser." });
     }
   }
 
@@ -119,14 +143,18 @@ class Main extends Component {
           response.data.address.city_district ??
           response.data.address.suburb ??
           "";
-
-        const locationName = [state, city, district].filter(Boolean).join(" ");
+        const locationName = [state, city, district].filter(Boolean).join(", ");
         this.setState({ location: locationName });
       } else {
-        this.setState({ location: "위치 정보를 찾을 수 없음" });
+        this.setState({ location: "Location details not available" });
       }
+      this.setState({
+        city: response.data.address.city || response.data.address.town,
+        state: response.data.address.state,
+      });
     } catch (error) {
-      this.setState({ location: "위치 정보를 불러오지 못함" });
+      console.error("Failed to fetch location details", error);
+      this.setState({ error: "Failed to load location details" });
     }
   };
 
@@ -197,19 +225,42 @@ class Main extends Component {
   };
   componentDidMount() {
     this.fetchPrice();
+    this.fetchLocationInfo();
   }
+
+  fetchLocationInfo = () => {
+    const token = localStorage.getItem("token"); // Assuming the token is stored in localStorage
+    const url = "http://43.201.122.113:8081/api/user-info/location";
+
+    axios
+      .get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        this.setState({ locationInfo: response.data });
+        console.log(response);
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching location info:", error);
+        this.setState({ error: "Failed to fetch location information" });
+      });
+  };
+
   fetchPrice = async () => {
-    const token = localStorage.getItem('token');
-    const url = "http://43.201.122.113:8081/api/farm/price?cropName=딸기";
+    const token = localStorage.getItem("token");
+    const url = "http://43.201.122.113:8081/api/farm/price?cropId=1";
 
     try {
       const response = await axios.get(url, {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       // Extract price data from the response
-      const prices = response.data.priceData.map(data => data.price);
+      const prices = response.data.priceData.map((data) => data.price);
       const minPrice = Math.min(...prices);
       const maxPrice = Math.max(...prices);
 
@@ -217,22 +268,22 @@ class Main extends Component {
         priceInfo: response.data.priceData,
         minPrice,
         maxPrice,
-        loading: false
+        loading: false,
       });
     } catch (error) {
       this.setState({ error: error.toString(), loading: false });
     }
-  }
+  };
 
   render() {
     const email = localStorage.getItem("email");
     const token = localStorage.getItem("token");
-    const { location, priceInfo, minPrice, maxPrice, loading, error } = this.state;
+    const { location, priceInfo, minPrice, maxPrice, loading, error } =
+      this.state;
     const url = "http://43.201.122.113:8081/api/farm/price?cropName=딸기";
     const urlSplit = url.split("=");
     const price = urlSplit[urlSplit.length - 1];
-
-    console.log(email);
+    const { locationInfo } = this.state;
 
     return (
       <>
@@ -243,7 +294,7 @@ class Main extends Component {
               src={profill2}
               alt="프로필 이미지"
               className={style.profillImg}
-              onClick={() => this.props.navigate("/profile")}
+              onClick={() => this.props.navigate("/info")}
             />
           ) : (
             <span
@@ -256,11 +307,17 @@ class Main extends Component {
         </header>
 
         <main className={style.main_container}>
-          <div className={style.gps_container}>
-            <p onClick={() => this.props.navigate("/address")}>
-              <img src={gps} alt="GPS이미지" />{" "}
-              {this.state.error ? this.state.error : this.state.location}
+          <div className={style.gps_container} onClick={() => this.props.navigate("/address")}>
+            <p>
+              <img src={gps} alt="GPS이미지" />
+
+              {/* {this.state.error ? this.state.error : this.state.location} */}
             </p>
+            {locationInfo ? (
+                <p className={style.gps_user_address}>{`${locationInfo.city} ${locationInfo.state}`}</p>
+              ) : (
+                <p>Loading location information...</p>
+              )}
           </div>
 
           <h2 className={style.Today_LongContainer}>
@@ -270,9 +327,13 @@ class Main extends Component {
             의 농사 TIP
           </h2>
 
-          {this.state.latitude && this.state.longitude && (
-            <WeatherInfo lat={this.state.latitude} lon={this.state.longitude} />
-          )}
+          {localStorage.getItem("latitude") &&
+            localStorage.getItem("longitude") && (
+              <WeatherInfo
+                lat={localStorage.getItem("latitude")}
+                lon={localStorage.getItem("longitude")}
+              />
+            )}
 
           {/* ✅ 관심 작물 슬라이더 */}
           <SliderHeader
@@ -302,7 +363,7 @@ class Main extends Component {
 
               <div className={style.text_container}>
                 <div className={style.abnormal_weather_header}>
-                  <span className={style.warning_red}>폭설 경보</span>{" "}
+                  <span className={style.warning_red}>폭설 경보</span>
                   <span> | 딸기 냉해 대비법</span>
                 </div>
                 <p className={style.crop_warning}>
@@ -314,7 +375,10 @@ class Main extends Component {
             </div>
 
             {/* ✅ 버튼 추가 */}
-            <button className={style.detail_button} onClick={() => this.props.navigate("/Detail")}>
+            <button
+              className={style.detail_button}
+              onClick={() => this.props.navigate("/Detail")}
+            >
               대처 방안 상세 보기 &gt;
             </button>
           </div>
@@ -327,27 +391,39 @@ class Main extends Component {
             slidesToShow={3} // 한번에 3개씩 보이도록 설정
           />
           <div>현재 농작물 도매가</div>
-                  {loading ? <p>Loading data...</p> : error ? <p>Error: {error}</p> : 
-                    <div>
-                      <p>{price} 1Kg당</p>
-                      <ResponsiveContainer width='100%' height={300}>
-                        <AreaChart data={priceInfo}
-                          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                          <defs>
-                            <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                              <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                            </linearGradient>
-                          </defs>
-                          <XAxis dataKey="date" />
-                          <YAxis domain={[minPrice, maxPrice]} />
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <Tooltip />
-                          <Area type="monotone" dataKey="price" stroke="#8884d8" fillOpacity={1} fill="url(#colorPrice)" />
-                        </AreaChart>
-                      </ResponsiveContainer>
-                    </div>
-                  }
+          {loading ? (
+            <p>Loading data...</p>
+          ) : error ? (
+            <p>Error: {error}</p>
+          ) : (
+            <div>
+              <p>{price} 1Kg당</p>
+              <ResponsiveContainer width="100%" height={300}>
+                <AreaChart
+                  data={priceInfo}
+                  margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+                >
+                  <defs>
+                    <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <XAxis dataKey="date" />
+                  <YAxis domain={[minPrice, maxPrice]} />
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <Tooltip />
+                  <Area
+                    type="monotone"
+                    dataKey="price"
+                    stroke="#8884d8"
+                    fillOpacity={1}
+                    fill="url(#colorPrice)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          )}
         </main>
         <Footer />
       </>
